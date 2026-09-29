@@ -23,15 +23,29 @@ The connector authenticates with a Microsoft Entra ID access token for the Power
 
 ### Step 2: Grant Power BI permissions
 
+How you grant access depends on whether the connector calls the API as a user or as a service principal.
+
+**As a user (delegated permissions)**
+
 1. Under **API permissions**, select **Add a permission** > **Power BI Service** > **Delegated permissions**.
 2. Add the scopes the operations you call need, for example `Dataset.ReadWrite.All`, `Report.ReadWrite.All`, `Dashboard.ReadWrite.All` and `Workspace.ReadWrite.All`. Admin operations need `Tenant.Read.All` or `Tenant.ReadWrite.All`.
 3. Grant admin consent for the tenant if your organization requires it.
 
-To call the API as a service principal instead of a user, a Power BI administrator must also enable **Allow service principals to use Power BI APIs** in the Power BI admin portal, and the service principal must be added to each workspace it uses.
+**As a service principal**
+
+Don't add Power BI API permissions to the app registration; a service principal's access comes from Power BI itself. Instead:
+
+1. A Power BI administrator must enable **Allow service principals to use Power BI APIs** in the Power BI admin portal.
+2. Add the service principal to each workspace it uses, with the access its operations need.
 
 ### Step 3: Obtain an access token
 
-Request a token for the resource `https://analysis.windows.net/powerbi/api` from `https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token`, for example with the authorization code flow and the scope `https://analysis.windows.net/powerbi/api/.default`. See [Register an app to embed Power BI content](https://learn.microsoft.com/en-us/power-bi/developer/embedded/register-app) for the details of each flow.
+Request a token from `https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token` for the Power BI resource `https://analysis.windows.net/powerbi/api`:
+
+- **As a user**, use the authorization code flow with the delegated scopes from Step 2.
+- **As a service principal**, use the client credentials flow: send the application (client) ID and client secret from Step 1 with the scope `https://analysis.windows.net/powerbi/api/.default`.
+
+See [Register an app to embed Power BI content](https://learn.microsoft.com/en-us/power-bi/developer/embedded/register-app) for the details of each flow.
 
 ## Quickstart
 

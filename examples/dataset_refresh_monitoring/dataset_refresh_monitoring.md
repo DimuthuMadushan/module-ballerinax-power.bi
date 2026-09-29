@@ -6,7 +6,9 @@ This example reviews the refresh health of a Power BI workspace. For every refre
 
 ### 1. Obtain an access token
 
-Follow the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-power.bi/blob/main/ballerina/README.md#setup-guide) to register an application and obtain an access token for the Power BI service. Reading schedules and history needs `Dataset.Read.All`; triggering a refresh needs `Dataset.ReadWrite.All`.
+Follow the [Setup guide](https://github.com/ballerina-platform/module-ballerinax-power.bi/blob/main/ballerina/README.md#setup-guide) to register an application and obtain an access token for the Power BI service. Reading schedules and history needs `Dataset.Read.All`, and the caller must also have Write permission on each dataset to read its refresh history (`getRefreshHistoryInGroup`). Triggering a refresh needs `Dataset.ReadWrite.All`.
+
+The on-demand refresh asks for an email on failure (`MailOnFailure`). Power BI sends that email only for user tokens; with a service principal token no notification is sent.
 
 ### 2. Configuration
 

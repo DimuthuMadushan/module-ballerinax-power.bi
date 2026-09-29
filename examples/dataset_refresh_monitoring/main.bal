@@ -57,7 +57,8 @@ public function main() returns error? {
             io:println("  ", refresh.startTime ?: "-", "  ", refreshType, "  ", status);
         }
 
-        // Step 4: Optionally re-run a refresh whose latest attempt failed.
+        // Step 4: Optionally re-run a refresh whose latest attempt failed. MailOnFailure emails the
+        // owner only when the token belongs to a user; with a service principal token no email is sent.
         if refreshes.length() > 0 && refreshes[0].status == "Failed" {
             if refreshFailed {
                 check powerbi->refreshDatasetInGroup(workspaceId, dataset.id,

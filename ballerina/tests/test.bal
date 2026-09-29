@@ -26,7 +26,6 @@ final string token = isLiveServer ? os:getEnv("POWERBI_TOKEN") : "test_token";
 // except where a test creates its own.
 final string datasetId = isLiveServer ? os:getEnv("POWERBI_DATASET_ID") : "cfafbeb1-8037-4d0c-896e-a46fb27ff229";
 final string pushDatasetId = isLiveServer ? os:getEnv("POWERBI_PUSH_DATASET_ID") : "cfafbeb1-8037-4d0c-896e-a46fb27ff229";
-final string pushTableName = isLiveServer ? os:getEnv("POWERBI_PUSH_TABLE_NAME") : "Product";
 final string reportId = isLiveServer ? os:getEnv("POWERBI_REPORT_ID") : "5b218778-e7a5-4d73-8187-f10824047715";
 final string dashboardId = isLiveServer ? os:getEnv("POWERBI_DASHBOARD_ID") : "69ffaa6c-b36d-4d01-96f5-1ed67c64d4af";
 final string userEmail = isLiveServer ? os:getEnv("POWERBI_USER_EMAIL") : "john@contoso.com";
@@ -76,12 +75,17 @@ isolated function testGetTables() returns error? {
 
 @test:Config {groups: ["live_tests", "mock_tests"]}
 isolated function testAddRows() returns error? {
-    check powerbi->addRows(pushDatasetId, pushTableName, {
+    // Rows go into a dataset created for this test, so the shared push dataset is left unchanged.
+    Dataset created = check powerbi->createDataset(pushDatasetDefinition("Ballerina test dataset rows"));
+    check powerbi->addRows(created.id, "Product", {
         rows: [
             {"ProductID": 1, "Name": "Adjustable Race"},
             {"ProductID": 2, "Name": "LL Crankarm"}
         ]
     });
+    if isLiveServer {
+        check powerbi->deleteDataset(created.id);
+    }
 }
 
 @test:Config {groups: ["live_tests", "mock_tests"]}
@@ -93,7 +97,11 @@ isolated function testGetRefreshHistory() returns error? {
 @test:Config {groups: ["mock_tests"]}
 isolated function testRefreshDataset() returns error? {
     // Mock-only: a live refresh depends on the dataset's data-source credentials and
-    // counts against the tenant's daily refresh quota.
+    // counts against the tenant's daily refresh quota. The group label alone does not stop a
+    // live run without a group filter, so return before the call.
+    if isLiveServer {
+        return;
+    }
     check powerbi->refreshDataset(datasetId, {notifyOption: "NoNotification"});
 }
 
@@ -106,6 +114,9 @@ isolated function testGetRefreshSchedule() returns error? {
 @test:Config {groups: ["mock_tests"]}
 isolated function testUpdateRefreshSchedule() returns error? {
     // Mock-only: changing a live refresh schedule alters a shared tenant fixture.
+    if isLiveServer {
+        return;
+    }
     check powerbi->updateRefreshSchedule(datasetId, {
         value: {
             days: ["Sunday", "Friday"],

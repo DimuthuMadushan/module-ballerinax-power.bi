@@ -76,27 +76,57 @@ public function main() returns error? {
         return error(string `Dataset ${datasetName} has no '${TABLE_NAME}' table`);
     }
 
-    // Step 4: Push the day's sales rows.
-    check powerbi->addRowsInGroup(workspaceId, id, TABLE_NAME, {
-        rows: [
-            {"Region": "West", "Product": "Road bike", "Amount": 1250.0, "SaleDate": saleDate},
-            {"Region": "West", "Product": "Helmet", "Amount": 89.5, "SaleDate": saleDate},
-            {"Region": "East", "Product": "Road bike", "Amount": 1180.0, "SaleDate": saleDate}
-        ]
-    });
-    io:println("Pushed 3 rows to ", TABLE_NAME);
+    // Step 4: Push the day's sales rows, unless an earlier run already pushed that day. Push
+    // datasets cannot delete individual rows, so a rerun for the same day must not append again.
+    string dayFilter = check daxDate(saleDate);
+    bi:DatasetExecuteQueriesRowResult[] existingRows = check query(powerbi, id, string
+            `EVALUATE ROW("Rows", COUNTROWS(FILTER(${TABLE_NAME}, ${TABLE_NAME}[SaleDate] = ${dayFilter})))`);
+    anydata existingCount = existingRows.length() > 0 ? existingRows[0]["[Rows]"] : ();
+    if existingCount is int && existingCount > 0 {
+        io:println("Sales for ", saleDate, " were already pushed; skipping the push");
+    } else {
+        string saleTime = saleDate + "T00:00:00Z";
+        check powerbi->addRowsInGroup(workspaceId, id, TABLE_NAME, {
+            rows: [
+                {"Region": "West", "Product": "Road bike", "Amount": 1250.0, "SaleDate": saleTime},
+                {"Region": "West", "Product": "Helmet", "Amount": 89.5, "SaleDate": saleTime},
+                {"Region": "East", "Product": "Road bike", "Amount": 1180.0, "SaleDate": saleTime}
+            ]
+        });
+        io:println("Pushed 3 rows to ", TABLE_NAME);
+    }
 
-    // Step 5: Read the totals per region back with a DAX query.
-    bi:DatasetExecuteQueriesResponse response = check powerbi->executeQueriesInGroup(workspaceId, id, {
-        queries: [
-            {query: string `EVALUATE SUMMARIZECOLUMNS(${TABLE_NAME}[Region], "Total", SUM(${TABLE_NAME}[Amount]))`}
-        ]
+    // Step 5: Read the day's totals per region back with a DAX query.
+    bi:DatasetExecuteQueriesRowResult[] totals = check query(powerbi, id, string
+            `EVALUATE SUMMARIZECOLUMNS(${TABLE_NAME}[Region], FILTER(ALL(${TABLE_NAME}[SaleDate]), ${TABLE_NAME}[SaleDate] = ${dayFilter}), "Total", SUM(${TABLE_NAME}[Amount]))`);
+    foreach bi:DatasetExecuteQueriesRowResult row in totals {
+        io:println(row);
+    }
+}
+
+// Runs one DAX query against the dataset and returns the rows of its result tables.
+function query(bi:Client powerbi, string datasetId, string dax) returns bi:DatasetExecuteQueriesRowResult[]|error {
+    bi:DatasetExecuteQueriesResponse response = check powerbi->executeQueriesInGroup(workspaceId, datasetId, {
+        queries: [{query: dax}]
     });
+    bi:DatasetExecuteQueriesRowResult[] rows = [];
     foreach bi:DatasetExecuteQueriesQueryResult result in response.results ?: [] {
         foreach bi:DatasetExecuteQueriesTableResult resultTable in result.tables ?: [] {
-            foreach bi:DatasetExecuteQueriesRowResult row in resultTable.rows ?: [] {
-                io:println(row);
-            }
+            bi:DatasetExecuteQueriesRowResult[] tableRows = resultTable.rows ?: [];
+            rows.push(...tableRows);
         }
     }
+    return rows;
+}
+
+// Turns a `YYYY-MM-DD` date into a DAX `DATE(...)` expression.
+function daxDate(string date) returns string|error {
+    string[] parts = re `-`.split(date);
+    if parts.length() != 3 {
+        return error(string `saleDate must be YYYY-MM-DD, got '${date}'`);
+    }
+    int year = check int:fromString(parts[0]);
+    int month = check int:fromString(parts[1]);
+    int day = check int:fromString(parts[2]);
+    return string `DATE(${year}, ${month}, ${day})`;
 }
