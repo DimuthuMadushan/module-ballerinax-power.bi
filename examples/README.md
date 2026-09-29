@@ -2,13 +2,22 @@
 
 The `ballerinax/power.bi` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. **[Push dataset sales feed](https://github.com/ballerina-platform/module-ballerinax-power.bi/tree/main/examples/push_dataset_sales_feed)** - Create a push dataset in a workspace if it is missing, push sales rows into it and read per-region totals back with a DAX query.
+
+2. **[Dataset refresh monitoring](https://github.com/ballerina-platform/module-ballerinax-power.bi/tree/main/examples/dataset_refresh_monitoring)** - Review the refresh schedule and recent refresh history of every refreshable dataset in a workspace, and optionally re-run refreshes that failed.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+1. Obtain an access token for the Power BI service as described in the [Setup guide](https://central.ballerina.io/ballerinax/power.bi/latest#setup-guide).
+
+2. For each example, create a `Config.toml` file with the related configuration. Here's an example of how your Config.toml file should look:
+
+```toml
+token = "<access-token>"
+workspaceId = "<workspace-id>"
+```
+
+Each example lists the additional values it needs in its own README.
 
 ## Running an example
 
