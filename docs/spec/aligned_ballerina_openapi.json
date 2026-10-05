@@ -9,6 +9,13 @@
             "url": "https://api.powerbi.com/v1.0/myorg"
         }
     ],
+    "security": [
+        {
+            "azure_auth": [
+                "user_impersonation"
+            ]
+        }
+    ],
     "paths": {
         "/datasets": {
             "get": {
@@ -898,6 +905,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "Refresh options: notification option and, for an enhanced refresh, the objects and refresh type",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -905,8 +913,7 @@
                             }
                         }
                     },
-                    "required": false,
-                    "description": "Refresh options: notification option and, for an enhanced refresh, the objects and refresh type"
+                    "required": false
                 },
                 "responses": {
                     "202": {
@@ -1758,6 +1765,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "The list of dataset parameters and the new values to set",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -1765,8 +1773,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The list of dataset parameters and the new values to set"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -2079,6 +2086,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "The data source connection updates to apply to the dataset",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -2086,8 +2094,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The data source connection updates to apply to the dataset"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -3958,6 +3965,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "The data source connection updates to apply to the paginated report",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -3965,8 +3973,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The data source connection updates to apply to the paginated report"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -5639,6 +5646,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "Refresh options: notification option and, for an enhanced refresh, the objects and refresh type",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -5646,8 +5654,7 @@
                             }
                         }
                     },
-                    "required": false,
-                    "description": "Refresh options: notification option and, for an enhanced refresh, the objects and refresh type"
+                    "required": false
                 },
                 "responses": {
                     "202": {
@@ -6489,13 +6496,13 @@
                     {
                         "name": "datasetId",
                         "in": "path",
+                        "description": "The dataset ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "description": "The dataset ID"
+                        }
                     }
                 ],
                 "responses": {
@@ -6589,16 +6596,17 @@
                     {
                         "name": "datasetId",
                         "in": "path",
+                        "description": "The dataset ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "description": "The dataset ID"
+                        }
                     }
                 ],
                 "requestBody": {
+                    "description": "The list of dataset parameters and the new values to set",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -6606,8 +6614,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The list of dataset parameters and the new values to set"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -6666,13 +6673,13 @@
                     {
                         "name": "datasetId",
                         "in": "path",
+                        "description": "The dataset ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "description": "The dataset ID"
+                        }
                     }
                 ],
                 "responses": {
@@ -6961,16 +6968,17 @@
                     {
                         "name": "datasetId",
                         "in": "path",
+                        "description": "The dataset ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "description": "The dataset ID"
+                        }
                     }
                 ],
                 "requestBody": {
+                    "description": "The data source connection updates to apply to the dataset",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -6978,8 +6986,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The data source connection updates to apply to the dataset"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -8781,14 +8788,14 @@
                     {
                         "name": "reportId",
                         "in": "path",
+                        "description": "The report ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string",
                             "format": "uuid"
-                        },
-                        "description": "The report ID"
+                        }
                     }
                 ],
                 "responses": {
@@ -8866,6 +8873,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "The data source connection updates to apply to the paginated report",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -8873,8 +8881,7 @@
                             }
                         }
                     },
-                    "required": true,
-                    "description": "The data source connection updates to apply to the paginated report"
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -11229,6 +11236,7 @@
                     }
                 ],
                 "requestBody": {
+                    "description": "The dataflow refresh notification option",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -11236,8 +11244,7 @@
                             }
                         }
                     },
-                    "required": false,
-                    "description": "The dataflow refresh notification option"
+                    "required": false
                 },
                 "responses": {
                     "200": {
@@ -16576,13 +16583,13 @@
                     {
                         "name": "datasetId",
                         "in": "path",
+                        "description": "The dataset ID",
                         "required": true,
                         "style": "simple",
                         "explode": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "description": "The dataset ID"
+                        }
                     }
                 ],
                 "responses": {
@@ -24730,12 +24737,13 @@
                         }
                     },
                     "error": {
+                        "type": "object",
+                        "description": "The details of an error, if present",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetExecuteQueriesError"
                             }
-                        ],
-                        "description": "The details of an error, if present"
+                        ]
                     }
                 },
                 "description": "The results from a single dataset query"
@@ -24783,13 +24791,14 @@
                         "description": "Whether row-level security is defined inside the Power BI .pbix file. If so, you must specify a role"
                     },
                     "Encryption": {
+                        "type": "object",
+                        "description": "Encryption information for a dataset",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/Encryption"
                             }
                         ],
-                        "x-ballerina-name": "encryption",
-                        "description": "Encryption information for a dataset"
+                        "x-ballerina-name": "encryption"
                     },
                     "isOnPremGatewayRequired": {
                         "type": "boolean",
@@ -24921,12 +24930,13 @@
                         "description": "The EffectiveIdentity auditable context. If this parameter is provided and isn't empty, it will enable auditing of the EffectiveIdentity and its value will be set to the username in the audit record. Otherwise, the EffectiveIdentity context will be omitted from the GenerateToken audit record"
                     },
                     "identityBlob": {
+                        "type": "object",
+                        "description": "A blob for specifying an identity. Only supported for datasets with a DirectQuery connection to Azure SQL",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/IdentityBlob"
                             }
-                        ],
-                        "description": "A blob for specifying an identity. Only supported for datasets with a DirectQuery connection to Azure SQL"
+                        ]
                     },
                     "username": {
                         "type": "string",
@@ -25200,12 +25210,13 @@
                         }
                     },
                     "serializerSettings": {
+                        "type": "object",
+                        "description": "The serialization settings for the results of a dataset query",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetExecuteQueriesSerializationSettings"
                             }
-                        ],
-                        "description": "The serialization settings for the results of a dataset query"
+                        ]
                     }
                 },
                 "description": "A request to execute queries against a dataset"
@@ -25228,12 +25239,13 @@
                         "description": "The rule value"
                     },
                     "percentOf": {
+                        "type": "object",
+                        "description": "An entry defining a percentage of some target metric in a condition for Power BI goal status rule",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalsRulesPercentOf"
                             }
-                        ],
-                        "description": "An entry defining a percentage of some target metric in a condition for Power BI goal status rule"
+                        ]
                     }
                 },
                 "description": "A specification for a condition in a Power BI goal status rule"
@@ -25281,8 +25293,8 @@
                     },
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     }
                 },
                 "description": "OData response wrapper for a Power BI available features list"
@@ -25680,12 +25692,13 @@
                 "type": "object",
                 "properties": {
                     "lastRefresh": {
+                        "type": "object",
+                        "description": "A Power BI refresh history entry",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/Refresh"
                             }
-                        ],
-                        "description": "A Power BI refresh history entry"
+                        ]
                     },
                     "kind": {
                         "type": "string",
@@ -25717,12 +25730,13 @@
                         "description": "The average duration in seconds of a refresh during the time window for which refresh data exists"
                     },
                     "capacity": {
+                        "type": "object",
+                        "description": "A Power BI capacity",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/Capacity"
                             }
-                        ],
-                        "description": "A Power BI capacity"
+                        ]
                     },
                     "medianDuration": {
                         "type": "number",
@@ -25758,20 +25772,22 @@
                         "description": "The number of refreshes per day (scheduled and on-demand) within the time window for which refresh data exists"
                     },
                     "refreshSchedule": {
+                        "type": "object",
+                        "description": "A Power BI refresh schedule for [imported model](/power-bi/connect-data/refresh-data#datasets-in-import-mode)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/RefreshSchedule"
                             }
-                        ],
-                        "description": "A Power BI refresh schedule for [imported model](/power-bi/connect-data/refresh-data#datasets-in-import-mode)"
+                        ]
                     },
                     "group": {
+                        "type": "object",
+                        "description": "A Power BI group associated to a Refreshable item",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/RefreshableGroup"
                             }
-                        ],
-                        "description": "A Power BI group associated to a Refreshable item"
+                        ]
                     }
                 },
                 "description": "A Power BI refreshable is a dataset that's been refreshed at least once, or for which a valid refresh schedule exists. If a dataset doesn't meet either of these conditions, then it won't show up in the API response. Power BI retains a seven-day refresh history for each dataset, up to a maximum of sixty refreshes"
@@ -25785,24 +25801,26 @@
                 "type": "object",
                 "properties": {
                     "preDeploymentDiffState": {
+                        "type": "object",
+                        "description": "Is an item new, different or identical to items in the target stage before deployment",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentExecutionStepPreDeploymentDiffState"
                             }
-                        ],
-                        "description": "Is an item new, different or identical to items in the target stage before deployment"
+                        ]
                     },
                     "index": {
                         "type": "integer",
                         "description": "The step index"
                     },
                     "sourceAndTarget": {
+                        "type": "object",
+                        "description": "Source and target items",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentSourceAndTarget"
                             }
-                        ],
-                        "description": "Source and target items"
+                        ]
                     },
                     "type": {
                         "type": "string",
@@ -25842,12 +25860,13 @@
                         }
                     },
                     "error": {
+                        "type": "object",
+                        "description": "Error details for the deployment step",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentError"
                             }
-                        ],
-                        "description": "Error details for the deployment step"
+                        ]
                     },
                     "status": {
                         "type": "string",
@@ -26033,12 +26052,13 @@
                 "type": "object",
                 "properties": {
                     "credentialDetails": {
+                        "type": "object",
+                        "description": "The credential details",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/CredentialDetails"
                             }
-                        ],
-                        "description": "The credential details"
+                        ]
                     }
                 },
                 "description": "An update data source to gateway request"
@@ -26268,8 +26288,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -26383,12 +26403,13 @@
                         "format": "uuid"
                     },
                     "config": {
+                        "type": "object",
+                        "description": "An automated install configuration for a Power BI template app (dictionary of name-value pairs)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/TemplateAppConfigurationRequest"
                             }
-                        ],
-                        "description": "An automated install configuration for a Power BI template app (dictionary of name-value pairs)"
+                        ]
                     }
                 },
                 "description": "The install details for a Power BI template app"
@@ -26398,8 +26419,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -26419,12 +26440,13 @@
                         "description": "Whether the group is read-only"
                     },
                     "logAnalyticsWorkspace": {
+                        "type": "object",
+                        "description": "A response detailing a user-owned Azure resource such as a Log Analytics workspace",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/AzureResource"
                             }
-                        ],
-                        "description": "A response detailing a user-owned Azure resource such as a Log Analytics workspace"
+                        ]
                     },
                     "capacityId": {
                         "type": "string",
@@ -26441,12 +26463,13 @@
                         "description": "Whether the group is assigned to a dedicated capacity"
                     },
                     "defaultDatasetStorageFormat": {
+                        "type": "object",
+                        "description": "The default dataset storage format in the group",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DefaultDatasetStorageFormat"
                             }
-                        ],
-                        "description": "The default dataset storage format in the group"
+                        ]
                     }
                 },
                 "description": "Common group extended properties"
@@ -26503,16 +26526,23 @@
                     {
                         "type": "object",
                         "properties": {
-                            "datasets": {
+                            "reports": {
                                 "type": "array",
-                                "description": "A list of datasets to be deployed",
+                                "description": "A list of reports to be deployed",
                                 "items": {
                                     "$ref": "#/components/schemas/DeployArtifactRequest"
                                 }
                             },
-                            "reports": {
+                            "datamarts": {
                                 "type": "array",
-                                "description": "A list of reports to be deployed",
+                                "description": "A list of datamarts to be deployed",
+                                "items": {
+                                    "$ref": "#/components/schemas/DeployArtifactRequest"
+                                }
+                            },
+                            "datasets": {
+                                "type": "array",
+                                "description": "A list of datasets to be deployed",
                                 "items": {
                                     "$ref": "#/components/schemas/DeployArtifactRequest"
                                 }
@@ -26527,13 +26557,6 @@
                             "dataflows": {
                                 "type": "array",
                                 "description": "A list of dataflows to be deployed",
-                                "items": {
-                                    "$ref": "#/components/schemas/DeployArtifactRequest"
-                                }
-                            },
-                            "datamarts": {
-                                "type": "array",
-                                "description": "A list of datamarts to be deployed",
                                 "items": {
                                     "$ref": "#/components/schemas/DeployArtifactRequest"
                                 }
@@ -26563,20 +26586,22 @@
                 "type": "object",
                 "properties": {
                     "datasourceSelector": {
+                        "type": "object",
+                        "description": "A Power BI data source",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/Datasource"
                             }
-                        ],
-                        "description": "A Power BI data source"
+                        ]
                     },
                     "connectionDetails": {
+                        "type": "object",
+                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasourceConnectionDetails"
                             }
-                        ],
-                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)"
+                        ]
                     }
                 },
                 "description": "Power BI dataset data source connection update request"
@@ -26651,12 +26676,13 @@
                         "description": "The name of the field, such as `Timestamp`, `Value`, or `Change`"
                     },
                     "value": {
+                        "type": "object",
+                        "description": "A specification for a condition in a Power BI goal status rule",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalsRulesRuleValue"
                             }
-                        ],
-                        "description": "A specification for a condition in a Power BI goal status rule"
+                        ]
                     },
                     "operator": {
                         "type": "string",
@@ -26709,8 +26735,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -26751,12 +26777,13 @@
                         }
                     },
                     "error": {
+                        "type": "object",
+                        "description": "The details of an error, if present",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetExecuteQueriesError"
                             }
-                        ],
-                        "description": "The details of an error, if present"
+                        ]
                     }
                 },
                 "description": "A table of data"
@@ -26780,6 +26807,7 @@
                 "description": "A Power BI dataset to dataflow link"
             },
             "AdminApp": {
+                "description": "The admin app",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/App"
@@ -26793,8 +26821,7 @@
                             }
                         }
                     }
-                ],
-                "description": "The admin app"
+                ]
             },
             "GoalCreateRequest": {
                 "required": [
@@ -26950,12 +26977,13 @@
                         }
                     },
                     "credentialDetails": {
+                        "type": "object",
+                        "description": "The data source credential details",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GatewayDatasourceCredentialDetails"
                             }
-                        ],
-                        "description": "The data source credential details"
+                        ]
                     },
                     "id": {
                         "type": "string",
@@ -27036,8 +27064,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -27122,8 +27150,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -27139,12 +27167,13 @@
                 "type": "object",
                 "properties": {
                     "endorsementDetails": {
+                        "type": "object",
+                        "description": "Power BI endorsement details",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/EndorsementDetails"
                             }
-                        ],
-                        "description": "Power BI endorsement details"
+                        ]
                     }
                 },
                 "description": "Common datamart endorsment properties"
@@ -27164,12 +27193,13 @@
                         "description": "The percentage of the maximum memory that a workload can consume (set by the user)"
                     },
                     "state": {
+                        "type": "object",
+                        "description": "The capacity workload state",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/WorkloadState"
                             }
-                        ],
-                        "description": "The capacity workload state"
+                        ]
                     }
                 },
                 "description": "A capacity workload setting"
@@ -27307,6 +27337,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "datasetUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "datasetUserAccessRight": {
@@ -27366,10 +27399,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "datasetUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -27412,12 +27442,13 @@
                         "description": "The type of the [data source](/power-bi/connect-data/power-bi-data-sources).\n\n\n| API name for the data source | | |\n|-|-|-|\n| ActiveDirectory | AdobeAnalytics | AdoDotNet |\n| AnalysisServices | AzureBlobs | AzureDataLakeStorage |\n| AzureMarketplace | AzureTables | BizTalk |\n| CDPA | CustomConnector | CustomHttpApi |\n| DB2 | Essbase | EventHub |\n| Excel | Exchange | Extension |\n| Facebook | File | Folder |\n| GoogleAnalytics | Hdfs | HDInsight |\n| Informix | MQ | MySql |\n| OData | ODBC | OleDb |\n| Oracle | PostgreSql | PowerQueryMashup \n| PubNub | Salesforce | SAPBW |\n| SAPBWMessageServer | SapErp | SAPHana |\n| SharePoint | SharePointDocLib | SharePointList |\n| Sql | Sybase | Teradata |\n| UIFlow | Web |"
                     },
                     "connectionDetails": {
+                        "type": "object",
+                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasourceConnectionDetails"
                             }
-                        ],
-                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)"
+                        ]
                     }
                 },
                 "description": "An object that uniquely identifies a single data source by its connection details"
@@ -27577,8 +27608,8 @@
                     },
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "continuationToken": {
                         "type": "string",
@@ -27640,28 +27671,31 @@
                         "description": "A note describing the deployment"
                     },
                     "updateAppSettings": {
+                        "type": "object",
+                        "description": "Configuration update org app after deployment",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PipelineUpdateAppSettings"
                             }
-                        ],
-                        "description": "Configuration update org app after deployment"
+                        ]
                     },
                     "newWorkspace": {
+                        "type": "object",
+                        "description": "The configuration details for creating a new workspace. Required when deploying to a stage that has no assigned workspaces",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PipelineNewWorkspaceRequest"
                             }
-                        ],
-                        "description": "The configuration details for creating a new workspace. Required when deploying to a stage that has no assigned workspaces"
+                        ]
                     },
                     "options": {
+                        "type": "object",
+                        "description": "Deployment configuration options. Can be specified either for the entire deployment or for a specific Power BI item (such as a report or dashboard). If both are specified, only the deployment options for the Power BI item are used",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentOptions"
                             }
-                        ],
-                        "description": "Deployment configuration options. Can be specified either for the entire deployment or for a specific Power BI item (such as a report or dashboard). If both are specified, only the deployment options for the Power BI item are used"
+                        ]
                     },
                     "isBackwardDeployment": {
                         "type": "boolean",
@@ -27799,12 +27833,13 @@
                         "description": "Identifier of the principal in Microsoft Graph. Only available for admin APIs"
                     },
                     "principalType": {
+                        "type": "object",
+                        "description": "The principal type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PrincipalType"
                             }
-                        ],
-                        "description": "The principal type"
+                        ]
                     }
                 },
                 "description": "A Power BI user access right entry for an app"
@@ -27886,8 +27921,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -27945,12 +27980,13 @@
                         "type": "object",
                         "properties": {
                             "queryScaleOutSettings": {
+                                "type": "object",
+                                "description": "Query scale-out settings of a dataset",
                                 "allOf": [
                                     {
                                         "$ref": "#/components/schemas/DatasetQueryScaleOutSettings"
                                     }
-                                ],
-                                "description": "Query scale-out settings of a dataset"
+                                ]
                             }
                         }
                     }
@@ -28012,8 +28048,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -28035,12 +28071,13 @@
                 "type": "object",
                 "properties": {
                     "credentialDetails": {
+                        "type": "object",
+                        "description": "The credential details",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/CredentialDetails"
                             }
-                        ],
-                        "description": "The credential details"
+                        ]
                     },
                     "connectionDetails": {
                         "type": "string",
@@ -28081,12 +28118,13 @@
                         "example": "Dataflow"
                     },
                     "createdByUser": {
+                        "type": "object",
+                        "description": "User information in artifact metadata",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactMetadataUser"
                             }
-                        ],
-                        "description": "User information in artifact metadata"
+                        ]
                     },
                     "displayName": {
                         "type": "string",
@@ -28094,12 +28132,13 @@
                         "example": "Sales Data Gen2"
                     },
                     "provisionState": {
+                        "type": "object",
+                        "description": "Current provisioning state of the artifact",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactProvisioningState"
                             }
-                        ],
-                        "description": "Current provisioning state of the artifact"
+                        ]
                     },
                     "description": {
                         "type": "string",
@@ -28124,20 +28163,22 @@
                         "example": "2023-11-02T08:30:00Z"
                     },
                     "ownerUser": {
+                        "type": "object",
+                        "description": "User information in artifact metadata",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactMetadataUser"
                             }
-                        ],
-                        "description": "User information in artifact metadata"
+                        ]
                     },
                     "modifiedByUser": {
+                        "type": "object",
+                        "description": "User information in artifact metadata",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactMetadataUser"
                             }
-                        ],
-                        "description": "User information in artifact metadata"
+                        ]
                     },
                     "workloadPayload": {
                         "type": "string",
@@ -28203,12 +28244,13 @@
                         }
                     },
                     "settings": {
+                        "type": "object",
+                        "description": "Export to file request settings",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ExportReportSettings"
                             }
-                        ],
-                        "description": "Export to file request settings"
+                        ]
                     },
                     "pages": {
                         "type": "array",
@@ -28225,12 +28267,13 @@
                         }
                     },
                     "defaultBookmark": {
+                        "type": "object",
+                        "description": "The bookmark to apply on a single page. Provide name or state, but not both",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PageBookmark"
                             }
-                        ],
-                        "description": "The bookmark to apply on a single page. Provide name or state, but not both"
+                        ]
                     },
                     "datasetToBind": {
                         "type": "string",
@@ -28349,20 +28392,22 @@
                         "description": "The display name of the principal"
                     },
                     "profile": {
+                        "type": "object",
+                        "description": "A Power BI service principal profile. Only relevant for [Power BI Embedded multi-tenancy solution](/power-bi/developer/embedded/embed-multi-tenancy)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ServicePrincipalProfile"
                             }
-                        ],
-                        "description": "A Power BI service principal profile. Only relevant for [Power BI Embedded multi-tenancy solution](/power-bi/developer/embedded/embed-multi-tenancy)"
+                        ]
                     },
                     "principalType": {
+                        "type": "object",
+                        "description": "The principal type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PrincipalType"
                             }
-                        ],
-                        "description": "The principal type"
+                        ]
                     },
                     "datasourceAccessRight": {
                         "type": "string",
@@ -28399,8 +28444,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -28518,8 +28563,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -28716,6 +28761,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "capacityUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "capacityUserAccessRight": {
@@ -28745,10 +28793,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "capacityUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -28785,8 +28830,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -28847,12 +28892,13 @@
                 "type": "object",
                 "properties": {
                     "delegatedUser": {
+                        "type": "object",
+                        "description": "Delegated user details. The user must be an existing user in Power BI and Azure AAD, and must have signed in to Power BI during the last three months",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DelegatedUser"
                             }
-                        ],
-                        "description": "Delegated user details. The user must be an existing user in Power BI and Azure AAD, and must have signed in to Power BI during the last three months"
+                        ]
                     },
                     "labelId": {
                         "type": "string",
@@ -28882,12 +28928,13 @@
                         }
                     },
                     "artifacts": {
+                        "type": "object",
+                        "description": "A composite of Power BI item IDs for each item type. The IDs specify which Power BI items require an information protection label update",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/InformationProtectionArtifactsChangeLabel"
                             }
-                        ],
-                        "description": "A composite of Power BI item IDs for each item type. The IDs specify which Power BI items require an information protection label update"
+                        ]
                     }
                 },
                 "description": "A composite of label information required to update an information protection label"
@@ -28913,12 +28960,13 @@
                 "type": "object",
                 "properties": {
                     "queryScaleOutSettings": {
+                        "type": "object",
+                        "description": "Query scale-out settings of a dataset",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetQueryScaleOutSettings"
                             }
-                        ],
-                        "description": "Query scale-out settings of a dataset"
+                        ]
                     },
                     "targetStorageMode": {
                         "type": "string",
@@ -28935,12 +28983,13 @@
                         "description": "The group name"
                     },
                     "defaultDatasetStorageFormat": {
+                        "type": "object",
+                        "description": "The default dataset storage format in the group",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DefaultDatasetStorageFormat"
                             }
-                        ],
-                        "description": "The default dataset storage format in the group"
+                        ]
                     }
                 },
                 "description": "An update request for the group"
@@ -28968,6 +29017,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "reportUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "reportUserAccessRight": {
@@ -29012,10 +29064,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "reportUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -29037,11 +29086,14 @@
                         "$ref": "#/components/schemas/Principal"
                     },
                     {
+                        "required": [
+                            "datasetUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "datasetUserAccessRight": {
                                 "type": "string",
-                                "description": "Required. The access right to grant to the user for the dataset.",
+                                "description": "Required. The access right to grant to the user for the dataset",
                                 "enum": [
                                     "Read",
                                     "ReadReshare",
@@ -29071,10 +29123,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "datasetUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -29156,12 +29205,13 @@
                         }
                     },
                     "type": {
+                        "type": "object",
+                        "description": "The group type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GroupType"
                             }
-                        ],
-                        "description": "The group type"
+                        ]
                     },
                     "dashboards": {
                         "type": "array",
@@ -29329,12 +29379,13 @@
                         "description": "The rule condition expression when `fieldComparison` isn't defined"
                     },
                     "fieldComparison": {
+                        "type": "object",
+                        "description": "A field comparison specification for Power BI goal status rule",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalsRulesFieldComparison"
                             }
-                        ],
-                        "description": "A field comparison specification for Power BI goal status rule"
+                        ]
                     }
                 },
                 "description": "A Power BI goal status rule"
@@ -29350,7 +29401,7 @@
                         "properties": {
                             "accessRight": {
                                 "type": "string",
-                                "description": "Required. The access right a user has for the deployment pipeline.",
+                                "description": "Required. The access right a user has for the deployment pipeline",
                                 "enum": [
                                     "Admin"
                                 ],
@@ -29461,12 +29512,13 @@
                         "format": "uuid"
                     },
                     "error": {
+                        "type": "object",
+                        "description": "Detailed information about a Power BI error response",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PowerBIApiErrorResponseDetail"
                             }
-                        ],
-                        "description": "Detailed information about a Power BI error response"
+                        ]
                     },
                     "status": {
                         "type": "string",
@@ -29482,6 +29534,9 @@
                         "$ref": "#/components/schemas/Principal"
                     },
                     {
+                        "required": [
+                            "datasetUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "datasetUserAccessRight": {
@@ -29541,10 +29596,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "datasetUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -29708,12 +29760,13 @@
                         "description": "Whether the workspace is assigned to a dedicated capacity"
                     },
                     "defaultDatasetStorageFormat": {
+                        "type": "object",
+                        "description": "The default dataset storage format in the group",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DefaultDatasetStorageFormat"
                             }
-                        ],
-                        "description": "The default dataset storage format in the group"
+                        ]
                     },
                     "dashboards": {
                         "type": "array",
@@ -29855,36 +29908,40 @@
                 "type": "object",
                 "properties": {
                     "newParent": {
+                        "type": "object",
+                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalRankValidationInfo"
                             }
-                        ],
-                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals"
+                        ]
                     },
                     "newPrevious": {
+                        "type": "object",
+                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalRankValidationInfo"
                             }
-                        ],
-                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals"
+                        ]
                     },
                     "newNext": {
+                        "type": "object",
+                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalRankValidationInfo"
                             }
-                        ],
-                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals"
+                        ]
                     },
                     "goalToMove": {
+                        "type": "object",
+                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalRankValidationInfo"
                             }
-                        ],
-                        "description": "The rank validation information for a Power BI goal, to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request. The caller provides validation information to confirm that they know the existing position of the goal within the hierarchy of goals"
+                        ]
                     }
                 },
                 "description": "A request object to be used with the [Move Goals](/rest/api/power-bi/scorecards_(preview)/move-goals) API request"
@@ -30002,12 +30059,13 @@
                         }
                     },
                     "error": {
+                        "type": "object",
+                        "description": "The error details for a failed import",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ImportError"
                             }
-                        ],
-                        "description": "The error details for a failed import"
+                        ]
                     },
                     "updatedDateTime": {
                         "type": "string",
@@ -30091,12 +30149,13 @@
                 "type": "object",
                 "properties": {
                     "artifactType": {
+                        "type": "object",
+                        "description": "The artifact type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactType"
                             }
-                        ],
-                        "description": "The artifact type"
+                        ]
                     },
                     "accessRight": {
                         "type": "string",
@@ -30107,12 +30166,13 @@
                         "description": "The display name of the Power BI item"
                     },
                     "sharer": {
+                        "type": "object",
+                        "description": "A Power BI user",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/User"
                             }
-                        ],
-                        "description": "A Power BI user"
+                        ]
                     },
                     "artifactId": {
                         "type": "string",
@@ -30324,8 +30384,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -30344,12 +30404,13 @@
                 "type": "object",
                 "properties": {
                     "value": {
+                        "type": "object",
+                        "description": "A Power BI refresh schedule for DirectQuery or LiveConnection, specifying either the frequency or a combination of days and times",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DirectQueryRefreshSchedule"
                             }
-                        ],
-                        "description": "A Power BI refresh schedule for DirectQuery or LiveConnection, specifying either the frequency or a combination of days and times"
+                        ]
                     }
                 },
                 "description": "Power BI refresh schedule request for DirectQuery or LiveConnection "
@@ -30388,12 +30449,13 @@
                         "format": "uuid"
                     },
                     "statusRules": {
+                        "type": "object",
+                        "description": "A container for JSON definitions of status rules on a Power BI goal",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GoalsRulesGoalRulesContainer"
                             }
-                        ],
-                        "description": "A container for JSON definitions of status rules on a Power BI goal"
+                        ]
                     },
                     "notesCount": {
                         "type": "integer",
@@ -30600,12 +30662,13 @@
                         "format": "uuid"
                     },
                     "tenantKey": {
+                        "type": "object",
+                        "description": "Encryption key information",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/TenantKey"
                             }
-                        ],
-                        "description": "Encryption key information"
+                        ]
                     },
                     "displayName": {
                         "type": "string",
@@ -30879,12 +30942,13 @@
                         "format": "uuid"
                     },
                     "connectionDetails": {
+                        "type": "object",
+                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasourceConnectionDetails"
                             }
-                        ],
-                        "description": "The Power BI data source connection details. See examples in [Get Datasources](/rest/api/power-bi/datasets/get-datasources#examples) or [Get Datasources In Group](/rest/api/power-bi/datasets/get-datasources-in-group#examples)"
+                        ]
                     },
                     "gatewayId": {
                         "type": "string",
@@ -30996,8 +31060,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -31014,8 +31078,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -31127,12 +31191,13 @@
                 "type": "object",
                 "properties": {
                     "sensitivityLabel": {
+                        "type": "object",
+                        "description": "Sensitivity label info for a Power BI item (such as a report or a dashboard)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/SensitivityLabel"
                             }
-                        ],
-                        "description": "Sensitivity label info for a Power BI item (such as a report or a dashboard)"
+                        ]
                     }
                 },
                 "description": "A list of properties returned for a Power BI item (such as a report or a dashboard) by WorkspaceInfo APIs"
@@ -31238,12 +31303,13 @@
                         }
                     },
                     "additionalInfo": {
+                        "type": "object",
+                        "description": "Additional feature information",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/AdditionalFeatureInfo"
                             }
-                        ],
-                        "description": "Additional feature information"
+                        ]
                     },
                     "state": {
                         "type": "string",
@@ -31315,8 +31381,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -31411,8 +31477,8 @@
                     },
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "continuationToken": {
                         "type": "string",
@@ -31602,8 +31668,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -31677,12 +31743,13 @@
                 "type": "object",
                 "properties": {
                     "paginatedReportConfiguration": {
+                        "type": "object",
+                        "description": "The export to file configuration for a paginated report ",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PaginatedReportExportConfiguration"
                             }
-                        ],
-                        "description": "The export to file configuration for a paginated report "
+                        ]
                     },
                     "format": {
                         "type": "string",
@@ -31746,12 +31813,13 @@
                         }
                     },
                     "powerBIReportConfiguration": {
+                        "type": "object",
+                        "description": "The export to file configuration for a Power BI report",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PowerBIReportExportConfiguration"
                             }
-                        ],
-                        "description": "The export to file configuration for a Power BI report"
+                        ]
                     }
                 },
                 "description": "The export to file request"
@@ -31766,8 +31834,8 @@
                     },
                     "@odata.count": {
                         "type": "integer",
-                        "x-ballerina-name": "atOdataCount",
-                        "description": "The @odata.count"
+                        "description": "The @odata.count",
+                        "x-ballerina-name": "atOdataCount"
                     },
                     "@odata.context": {
                         "type": "string",
@@ -31942,8 +32010,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -32067,12 +32135,13 @@
                         "type": "object",
                         "properties": {
                             "queryScaleOutSettings": {
+                                "type": "object",
+                                "description": "Query scale-out settings of a dataset",
                                 "allOf": [
                                     {
                                         "$ref": "#/components/schemas/DatasetQueryScaleOutSettings"
                                     }
-                                ],
-                                "description": "Query scale-out settings of a dataset"
+                                ]
                             }
                         }
                     }
@@ -32319,12 +32388,13 @@
                 "type": "object",
                 "properties": {
                     "currentRefreshType": {
+                        "type": "object",
+                        "description": "The type of processing to perform",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetRefreshDetailType"
                             }
-                        ],
-                        "description": "The type of processing to perform"
+                        ]
                     },
                     "serviceExceptionJson": {
                         "type": "string",
@@ -32338,12 +32408,13 @@
                         }
                     },
                     "type": {
+                        "type": "object",
+                        "description": "The type of processing to perform",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetRefreshDetailType"
                             }
-                        ],
-                        "description": "The type of processing to perform"
+                        ]
                     },
                     "extendedStatus": {
                         "type": "string",
@@ -32619,12 +32690,13 @@
                 "type": "object",
                 "properties": {
                     "endorsementDetails": {
+                        "type": "object",
+                        "description": "Power BI endorsement details",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/EndorsementDetails"
                             }
-                        ],
-                        "description": "Power BI endorsement details"
+                        ]
                     }
                 },
                 "description": "A list of properties returned for a Power BI item (such as a report or a dashboard) by WorkspaceInfo APIs"
@@ -32661,12 +32733,13 @@
                 "type": "object",
                 "properties": {
                     "bookmark": {
+                        "type": "object",
+                        "description": "The bookmark to apply on a single page. Provide name or state, but not both",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PageBookmark"
                             }
-                        ],
-                        "description": "The bookmark to apply on a single page. Provide name or state, but not both"
+                        ]
                     },
                     "visualName": {
                         "type": "string",
@@ -32704,10 +32777,10 @@
                 "properties": {
                     "capacityMigrationAssignments": {
                         "type": "array",
+                        "description": "List of capacity migration assignment items",
                         "items": {
                             "$ref": "#/components/schemas/CapacityMigrationAssignment"
-                        },
-                        "description": "List of capacity migration assignment items"
+                        }
                     }
                 },
                 "description": "A request to assign workspaces to a premium capacity"
@@ -32764,12 +32837,13 @@
                         "description": "For principal type `User`, provide the *UPN*. Otherwise provide the [object ID](/power-bi/developer/embedded/embedded-troubleshoot#what-is-the-difference-between-application-object-id-and-principal-object-id) of the principal"
                     },
                     "principalType": {
+                        "type": "object",
+                        "description": "The principal type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PrincipalType"
                             }
-                        ],
-                        "description": "The principal type"
+                        ]
                     }
                 },
                 "description": "A Power BI principal with access to the artifact"
@@ -32796,12 +32870,13 @@
                 "type": "object",
                 "properties": {
                     "connectionDetails": {
+                        "type": "object",
+                        "description": "The connection details for a paginated report data source",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/RdlDatasourceConnectionDetails"
                             }
-                        ],
-                        "description": "The connection details for a paginated report data source"
+                        ]
                     },
                     "datasourceName": {
                         "type": "string",
@@ -33046,12 +33121,13 @@
                         "format": "uuid"
                     },
                     "options": {
+                        "type": "object",
+                        "description": "Deployment configuration options. Can be specified either for the entire deployment or for a specific Power BI item (such as a report or dashboard). If both are specified, only the deployment options for the Power BI item are used",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentOptions"
                             }
-                        ],
-                        "description": "Deployment configuration options. Can be specified either for the entire deployment or for a specific Power BI item (such as a report or dashboard). If both are specified, only the deployment options for the Power BI item are used"
+                        ]
                     }
                 },
                 "description": "A request to deploy a Power BI item (such as a report or a dashboard)"
@@ -33085,12 +33161,13 @@
                         "description": "The percentage of the maximum memory that a workload can consume (set by the user)"
                     },
                     "state": {
+                        "type": "object",
+                        "description": "The capacity workload state",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/WorkloadState"
                             }
-                        ],
-                        "description": "The capacity workload state"
+                        ]
                     }
                 },
                 "description": "Patch workload setting request"
@@ -33108,36 +33185,40 @@
                         "description": "The numeric identifier of a source pipeline deployment stage. Development (0), Test (1), Production (2)"
                     },
                     "note": {
+                        "type": "object",
+                        "description": "A note describing the deployment",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PipelineOperationNote"
                             }
-                        ],
-                        "description": "A note describing the deployment"
+                        ]
                     },
                     "executionPlan": {
+                        "type": "object",
+                        "description": "A deployment execution plan",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DeploymentExecutionPlan"
                             }
-                        ],
-                        "description": "A deployment execution plan"
+                        ]
                     },
                     "performedBy": {
+                        "type": "object",
+                        "description": "User or service principal that performed the pipeline operation",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PipelineOperationUser"
                             }
-                        ],
-                        "description": "User or service principal that performed the pipeline operation"
+                        ]
                     },
                     "preDeploymentDiffInformation": {
+                        "type": "object",
+                        "description": "The amount of new, different and identical deployed items before deployment",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PreDeploymentDiffInformation"
                             }
-                        ],
-                        "description": "The amount of new, different and identical deployed items before deployment"
+                        ]
                     },
                     "lastUpdatedTime": {
                         "type": "string",
@@ -33231,12 +33312,13 @@
                         "description": "The UPN of the user who performed the deployment"
                     },
                     "principalType": {
+                        "type": "object",
+                        "description": "The principal type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PrincipalType"
                             }
-                        ],
-                        "description": "The principal type"
+                        ]
                     }
                 },
                 "description": "User or service principal that performed the pipeline operation"
@@ -33246,8 +33328,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -33480,6 +33562,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "dashboardUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "dashboardUserAccessRight": {
@@ -33524,10 +33609,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "dashboardUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -33535,20 +33617,22 @@
                 "type": "object",
                 "properties": {
                     "informationProtectionLabel": {
+                        "type": "object",
+                        "description": "The details of the information protection label, if any, associated with the dataset",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetExecuteQueriesInformationProtectionLabel"
                             }
-                        ],
-                        "description": "The details of the information protection label, if any, associated with the dataset"
+                        ]
                     },
                     "error": {
+                        "type": "object",
+                        "description": "The details of an error, if present",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/DatasetExecuteQueriesError"
                             }
-                        ],
-                        "description": "The details of an error, if present"
+                        ]
                     },
                     "results": {
                         "type": "array",
@@ -33681,6 +33765,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "datamartUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "datamartUserAccessRight": {
@@ -33755,10 +33842,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "datamartUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -33808,12 +33892,13 @@
                 "type": "object",
                 "properties": {
                     "value": {
+                        "type": "object",
+                        "description": "A Power BI refresh schedule for [imported model](/power-bi/connect-data/refresh-data#datasets-in-import-mode)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/RefreshSchedule"
                             }
-                        ],
-                        "description": "A Power BI refresh schedule for [imported model](/power-bi/connect-data/refresh-data#datasets-in-import-mode)"
+                        ]
                     }
                 },
                 "description": "Power BI refresh schedule request"
@@ -33879,12 +33964,13 @@
                 "type": "object",
                 "properties": {
                     "sensitivityLabel": {
+                        "type": "object",
+                        "description": "Sensitivity label info for a Power BI item (such as a report or a dashboard)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/SensitivityLabel"
                             }
-                        ],
-                        "description": "Sensitivity label info for a Power BI item (such as a report or a dashboard)"
+                        ]
                     }
                 },
                 "description": "Common datamart sensitivity label properties"
@@ -33909,12 +33995,13 @@
                         "description": "Display name of the principal"
                     },
                     "profile": {
+                        "type": "object",
+                        "description": "A Power BI service principal profile. Only relevant for [Power BI Embedded multi-tenancy solution](/power-bi/developer/embedded/embed-multi-tenancy)",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ServicePrincipalProfile"
                             }
-                        ],
-                        "description": "A Power BI service principal profile. Only relevant for [Power BI Embedded multi-tenancy solution](/power-bi/developer/embedded/embed-multi-tenancy)"
+                        ]
                     },
                     "userType": {
                         "type": "string",
@@ -33925,12 +34012,13 @@
                         "description": "Identifier of the principal in Microsoft Graph. Only available for admin APIs"
                     },
                     "principalType": {
+                        "type": "object",
+                        "description": "The principal type",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/PrincipalType"
                             }
-                        ],
-                        "description": "The principal type"
+                        ]
                     }
                 },
                 "description": "A Power BI user"
@@ -33940,8 +34028,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -33960,6 +34048,9 @@
                         "$ref": "#/components/schemas/User"
                     },
                     {
+                        "required": [
+                            "groupUserAccessRight"
+                        ],
                         "type": "object",
                         "properties": {
                             "groupUserAccessRight": {
@@ -33999,10 +34090,7 @@
                                     ]
                                 }
                             }
-                        },
-                        "required": [
-                            "groupUserAccessRight"
-                        ]
+                        }
                     }
                 ]
             },
@@ -34090,8 +34178,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -34294,12 +34382,13 @@
                         "format": "uuid"
                     },
                     "publicKey": {
+                        "type": "object",
+                        "description": "A Power BI gateway public key",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/GatewayPublicKey"
                             }
-                        ],
-                        "description": "A Power BI gateway public key"
+                        ]
                     },
                     "type": {
                         "type": "string",
@@ -34492,12 +34581,13 @@
                 "type": "object",
                 "properties": {
                     "artifactMetadata": {
+                        "type": "object",
+                        "description": "Metadata information for a Fabric artifact",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/ArtifactMetadata"
                             }
-                        ],
-                        "description": "Metadata information for a Fabric artifact"
+                        ]
                     },
                     "errors": {
                         "type": "array",
@@ -34596,8 +34686,8 @@
                 "properties": {
                     "@odata.context": {
                         "type": "string",
-                        "x-ballerina-name": "atOdataContext",
-                        "description": "The OData context URL of the response"
+                        "description": "The OData context URL of the response",
+                        "x-ballerina-name": "atOdataContext"
                     },
                     "value": {
                         "type": "array",
@@ -34737,11 +34827,11 @@
                         "additionalProperties": {
                             "type": "string"
                         },
+                        "description": "The configuration",
                         "example": {
                             "param1": "value1",
                             "param2": "value2"
-                        },
-                        "description": "The configuration"
+                        }
                     }
                 },
                 "description": "An automated install configuration for a Power BI template app (dictionary of name-value pairs)"
@@ -34869,12 +34959,13 @@
                 "type": "object",
                 "properties": {
                     "sourceReport": {
+                        "type": "object",
+                        "description": "An existing source report",
                         "allOf": [
                             {
                                 "$ref": "#/components/schemas/SourceReport"
                             }
-                        ],
-                        "description": "An existing source report"
+                        ]
                     },
                     "sourceType": {
                         "type": "string",
@@ -35034,12 +35125,5 @@
             }
         }
     },
-    "x-original-swagger-version": "2.0",
-    "security": [
-        {
-            "azure_auth": [
-                "user_impersonation"
-            ]
-        }
-    ]
+    "x-original-swagger-version": "2.0"
 }

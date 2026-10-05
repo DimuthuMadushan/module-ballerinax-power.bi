@@ -9,21 +9,21 @@ This document records the sanitation done on top of the official OpenAPI specifi
 The OpenAPI specification is obtained from [wso2/api-specs](https://github.com/wso2/api-specs/blob/main/openapi/powerbi/powerbi/v1.0/openapi.json).
 These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
 
-`docs/spec/openapi.json` is kept byte-identical to the upstream document. Items 1-11 are applied to `docs/spec/aligned_ballerina_openapi.json` after `bal openapi flatten` and `bal openapi align`, and must be re-applied after every re-alignment.
+Items 2-7 and 11 are applied to the original `docs/spec/openapi.json` (Swagger 2.0), so `bal openapi flatten` and `bal openapi align` reproduce them. Items 1 and 8 can only be applied to `docs/spec/aligned_ballerina_openapi.json` after alignment, because `align` rewrites the server URL and the `x-ballerina-name` of the OData parameters on every run; re-apply them after every re-alignment. Items 9 and 10 are decisions kept in `docs/spec/ai-mappings.json`, and item 12 is made by `align` itself. The original spec is also re-indented to canonical 4-space JSON (inline arrays expanded), which changes no data.
 
 1. Fix the server URL
 - **Original**: `align` folds the `/v1.0/myorg` path prefix into the Swagger 2.0 `host` and produces `https://api.powerbi.com//v1.0/myorg` (double slash).
-- **Updated**: `https://api.powerbi.com/v1.0/myorg`.
+- **Updated**: `https://api.powerbi.com/v1.0/myorg`, set by editing `servers[0].url` in the aligned spec after `align`. The original spec has no `basePath` and keeps the prefix in every path, which is what `align` folds, so no change to the original produces the single-slash URL.
 - **Reason**: The double slash produces an invalid request path on every call.
 
 2. Add the security scheme
 - **Original**: The source spec has no `securityDefinitions` and an empty top-level `security`.
-- **Updated**: Added `components.securitySchemes.azure_auth` (OAuth 2.0 implicit flow, `https://login.microsoftonline.com/common/oauth2/authorize`, scope `user_impersonation`) and a top-level `security: [{azure_auth: [user_impersonation]}]`, as in the specification of the published 1.x connector.
+- **Updated**: Added `securityDefinitions.azure_auth` to the original spec (it becomes `components.securitySchemes.azure_auth` after conversion; OAuth 2.0 implicit flow, `https://login.microsoftonline.com/common/oauth2/authorize`, scope `user_impersonation`) and a top-level `security: [{azure_auth: [user_impersonation]}]`, as in the specification of the published 1.x connector.
 - **Reason**: Without a scheme the generated `ConnectionConfig` has no `auth` field. The API requires a Microsoft Entra ID bearer token, so the client takes `http:BearerTokenConfig`.
 
 3. Set the request body media type to `application/json`
 - **Original**: The source spec declares `consumes: []` globally and on 164 operations, so 19 request bodies converted to `*/*`.
-- **Updated**: Those 19 request bodies use `application/json`.
+- **Updated**: `consumes` is `["application/json"]` globally and on those 164 operations, in the original spec, so the 19 request bodies use `application/json`.
 - **Reason**: The Power BI REST API accepts JSON bodies; `*/*` gives an untyped payload.
 
 4. Make `Role.members` and `Role.tablePermissions` arrays
@@ -33,22 +33,22 @@ These changes are done in order to improve the overall usability, and as workaro
 
 5. Move sibling `properties` into `allOf`
 - **Original**: 13 schemas (`AdminApp`, `AdminServicePrincipalProfile`, `GroupUser`, `CapacityUser`, `ReportUser`, `DatamartUser`, `DashboardUser`, `DatasetUser`, `PostDatasetUserAccess`, `DatasetUserAccess`, `DataflowUser`, `SelectiveDeployRequest`, `PipelineUser`) declare `properties`/`required` beside `allOf`.
-- **Updated**: The sibling `properties` and `required` are moved into a second `allOf` member `{type: object, properties, required}`.
+- **Updated**: In the original spec, the sibling `properties` and `required` are moved into a second `allOf` member `{type: object, properties, required}`. Only `required` names that match a property of that member move with it; the others (for example `DataflowUser`, whose `required` names `dataflowUserAccessRight` while the property is `DataflowUserAccessRight`) are dropped, as before. `align` then adds `x-ballerina-name: dataflowUserAccessRight` to that property, which is removed from the aligned spec after `align` to keep the published field name `DataflowUserAccessRight`.
 - **Reason**: The generator ignores properties declared beside `allOf`, which dropped fields such as `groupUserAccessRight`.
 
 6. Narrow file downloads to `application/octet-stream`
 - **Original**: The six `type: file` responses (report `Export`, export-to-file `file`, dataflow get and admin export, each with its workspace variant) list several binary media types (`application/zip`, `image/*`, `text/csv`, `multipart/related`, ...).
-- **Updated**: A single `application/octet-stream` binary response.
+- **Updated**: In the original spec, `produces` on those six operations is `["application/octet-stream"]`, so each is a single binary response.
 - **Reason**: Several binary media types generate an unbindable record return; a single binary type returns `byte[]`.
 
 7. Remove a duplicate field from `WorkspaceInfoDataset`
 - **Original**: Both `DatasetBaseProperties` and `WorkspaceInfoDataflowProperties` declare `upstreamDataflows`, and `WorkspaceInfoDataset` includes both through `allOf`.
-- **Updated**: `WorkspaceInfoDataset` includes the other three `WorkspaceInfoDataflowProperties` fields inline instead of the `$ref`.
+- **Updated**: In the original spec, `WorkspaceInfoDataset` includes the other three `WorkspaceInfoDataflowProperties` fields (`misconfiguredDatasourceUsages`, `datasourceUsages`, `upstreamDatamarts`) inline instead of the `$ref`; the generated `WorkspaceInfoDataset` record is unchanged.
 - **Reason**: The duplicate fails compilation with `redeclared symbol 'upstreamDataflows'`. The two declarations are identical.
 
 8. Restore the OData query parameter names
 - **Original**: `align` names the `$top`, `$skip`, `$filter`, `$expand` and `$select` parameters `dollarTop`, `dollarSkip`, ... (`x-ballerina-name`, 82 parameters).
-- **Updated**: `top`, `skip`, `filter`, `expand`, `select`.
+- **Updated**: `top`, `skip`, `filter`, `expand`, `select`, set in the aligned spec after `align` (it overwrites any `x-ballerina-name` set in the original).
 - **Reason**: Keeps the parameter names of the published 1.x connector. The wire names are unchanged.
 
 9. Name the operations in camelCase, without the group prefix
@@ -183,7 +183,7 @@ Consistency fixes:
 
 11. Fill missing documentation
 - **Original**: 110 fields, 34 schemas, 6 path parameters and 11 request bodies had no description; 182 typed 2xx responses said only `OK`, `Created` or `Accepted`; 14 groups of operations shared a summary, and the capacity-users admin operation (`GET /admin/capacities/{capacityId}/users`) described workspace users.
-- **Updated**: Descriptions taken from the referenced schema or written from the field name; responses described from the operation summary; duplicate summaries qualified with "in My workspace", "in the specified workspace" or "(as an administrator)"; the capacity-users summary corrected.
+- **Updated**: Applied to the original spec with `tooling/apply_descriptions.py` (299 edits, 84 `$ref` properties wrapped as `allOf` plus a description), then 66 operation-level descriptions, summaries and body descriptions that the script could not match (a path such as `/datasets` is also a suffix of `/groups/{groupId}/datasets`) were written by hand. Descriptions taken from the referenced schema or written from the field name; responses described from the operation summary; duplicate summaries qualified with "in My workspace", "in the specified workspace" or "(as an administrator)"; the capacity-users summary corrected.
 - **Reason**: Generated doc comments and distinct operation descriptions.
 
 12. Update the API Paths

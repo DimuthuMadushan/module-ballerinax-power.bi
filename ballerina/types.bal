@@ -398,16 +398,16 @@ public type DependentDatamart record {
 # A request to selectively deploy items from a deployment pipeline stage
 public type SelectiveDeployRequest record {
     *DeployRequestBase;
-    # A list of datasets to be deployed
-    DeployArtifactRequest[] datasets?;
     # A list of reports to be deployed
     DeployArtifactRequest[] reports?;
+    # A list of datamarts to be deployed
+    DeployArtifactRequest[] datamarts?;
+    # A list of datasets to be deployed
+    DeployArtifactRequest[] datasets?;
     # A list of dashboards to be deployed
     DeployArtifactRequest[] dashboards?;
     # A list of dataflows to be deployed
     DeployArtifactRequest[] dataflows?;
-    # A list of datamarts to be deployed
-    DeployArtifactRequest[] datamarts?;
 };
 
 # A Power BI report returned by Workspace Info APIs. The API returns a subset of the following list of report properties. The subset depends on the API called, caller permissions, and the availability of data in the Power BI database
@@ -971,7 +971,7 @@ public type AdditionalFeatureInfo record {
 # A Power BI user access right entry for a dataset
 public type PostDatasetUserAccess record {
     *Principal;
-    # Required. The access right to grant to the user for the dataset.
+    # Required. The access right to grant to the user for the dataset
     "Read"|"ReadReshare"|"ReadExplore"|"ReadReshareExplore" datasetUserAccessRight;
 };
 
@@ -3022,7 +3022,7 @@ public type Scorecard record {
 # A Power BI user access right entry for a deployment pipeline
 public type PipelineUser record {
     *Principal;
-    # Required. The access right a user has for the deployment pipeline.
+    # Required. The access right a user has for the deployment pipeline
     "Admin" accessRight?;
 };
 
